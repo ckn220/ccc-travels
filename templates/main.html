@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+<div class="row">
+
+	<!-- left column -->
+	<div class="col-md-6">
+		<legend><h3><strong>Recommended Burgs</strong></h3></legend>
+
+		{% for idea in ideas %}
+			
+			<h4>by {{ idea.creator }} from {{ idea.title }} to 
+				{{ idea.latitude }}
+				{{ idea.longitude }}
+			</h4>
+				<h4>Travels <a href="/ideas/{{ idea.slug }}"> {{ idea.idea }}</a></h4>
+						
+			<p>
+			
+			<ul>
+				{% for cat in idea.categories %}
+				<li>
+					<a href="/category/{{ cat}}">
+						{{ cat|replace("_"," ")}}
+					</a>
+				</li>
+					
+				{% endfor %}
+			</ul>
+
+			<a class="label" href="/ideas/{{ idea.slug }}/edit">edit</a>
+			</p>
+			
+			<hr/>
+		{% endfor %}
+		
+	</div>
+
+	<!-- right column -->
+	<div class="col-md-6">
+
+		<form method="POST" role="form">
+			<legend><h3><strong>Traveller Info</strong></h3></legend>
+			<div class="form-group">
+				<label for="creator">Name</label>
+				<input type="text" id="creator" name="creator" class="form-control" value="">
+			</div>
+
+			<div class="form-group">
+				<label for="title">From</label>
+				<input type="text" id="title" name="title" class="form-control">
+				<!-- title means where you're from -->
+			</div>
+			
+			<div class="form-group">
+				<label for="idea">Why you love to travel</label>
+				<textarea name="idea" id="idea" class="form-control"></textarea>
+			</div>
+			
+			------
+			
+			<div class="form-group">
+				<label for="latitude">Latitude</label>
+				<input type="text" id="latitude" name="latitude" class="form-control" value="">
+			</div>
+
+			<div class="form-group">
+				<label for="longitude">Longitude</label>
+				<input type="text" id="longitude" name="longitude" class="form-control" value="">
+			</div>
+
+			--------
+
+			<label>Which 'burg should I see?</label>
+			<legend></legend><p class="help-block">Select your favorite 'burg</p></legend>
+			{# comment - loop through categories and create checkboxes #}
+			{% for c in categories|sort %}
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" name="categories" value="{{c}}"> {{ c|title }}
+				</label>
+			</div>
+			{% endfor %}
+
+
+
+			<button type="submit" class="btn btn-primary">Add Destinations</button>
+		</form>
+	</div>
+
+	
+
+</div>
+
+{% endblock %}
+
+
+{% block styles %}{% endblock %}
+{% block scripts %}{% endblock %}
