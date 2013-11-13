@@ -66,4 +66,15 @@
 
 
 {% block styles %}{% endblock %}
-{% block scripts %}{% endblock %}
+{% block scripts %}
+<script>
+var loadMarkers = function() {
+	// map text box populate
+	jQuery("#address").val('{{ idea.title }}');
+	
+	//put marker
+	createMarker('{{ idea.latitude }}','{{ idea.longitude }}','{{idea.title}}');	
+};
+</script>
+
+{% endblock %}
