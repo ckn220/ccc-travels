@@ -19,7 +19,7 @@ below centers the input font in the div
 }
 
 #map_canvas {
-height: 600px;
+height: 800px;
 
 }
 
@@ -32,9 +32,9 @@ height: 600px;
 
 #panel {
         position: absolute;
-        top: 180px;
+        top: 225px;
         left: 50%;
-        margin-left: -450px;
+        margin-left: -465px;
         z-index: 5;
         background-color: #fff;
         padding: 5px;
@@ -45,7 +45,7 @@ height: 600px;
 
   font-family: 'Raleway Dots', cursive;
   margin-left: -17px;
-  text-align: left;
+  text-align: right;
   font-size: 50px;
 }
 

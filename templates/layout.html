@@ -42,7 +42,54 @@ function initialize() {
   if (loadMarkers != undefined) {
     loadMarkers();
   }
-}
+
+  var point = new google.maps.LatLng(-14.397, 150.644);
+// create a marker
+  var marker = new google.maps.Marker({
+      map: map,
+      position: point,
+      // position: results[0].geometry.location
+      // title: titleText,
+  });
+
+// //info window contents
+   var contentString = '<div>Hello World TEST</div>';
+//       '<div id="siteNotice">'+
+//       '</div>'+
+//       '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+//       '<div id="bodyContent">'+
+//       '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+//       'sandstone rock formation in the southern part of the '+
+//       'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+//       'south west of the nearest large town, Alice Springs; 450&#160;km '+
+//       '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+//       'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+//       'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+//       'Aboriginal people of the area. It has many springs, waterholes, '+
+//       'rock caves and ancient paintings. Uluru is listed as a World '+
+//       'Heritage Site.</p>'+
+//       '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+//       'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+//       '(last visited June 22, 2009).</p>'+
+//       '</div>';
+
+// // info window contents 
+  var infowindow = new google.maps.InfoWindow({
+      content: contentString
+  });
+
+  //click event
+  google.maps.event.addListener(marker, 'click', function() {
+    
+    infowindow.open(map,marker);
+   });
+  }
+
+
+  // google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
 
   function codeAddress() {
     var address = document.getElementById('address').value;
@@ -62,44 +109,40 @@ function initialize() {
           var marker = new google.maps.Marker({
               map: map,
               position: results[0].geometry.location
+             // title: titleText
           });
 
-
-      } else {
-          alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
-  }
-
-
-  // somewhere need to loop though markers to show all of pins  
+           } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+           }
+          });
+        }
 
 
+          //need to loop though markers to show all of pins  
 
-  var allMarkers = [];
-  // add a marker to the map
-  // pass in lat, lng and title text
-  var createMarker = function(lat,lng,titleText) {
-    
-    // create google lat lng object
-    var latlng = new google.maps.LatLng(lat, lng); 
+          var allMarkers = [];
+      // add a marker to the map
+      // pass in lat, lng and title text
+          var createMarker = function(lat,lng,titleText) {
+        
+        // create google lat lng object
+          var latlng = new google.maps.LatLng(lat, lng); 
 
-    // create marker, 
-    marker = new google.maps.Marker({
-      position: latlng,
-      map: map, 
-      title: titleText
-    });
+            // create marker, 
+            marker = new google.maps.Marker({
+              position: latlng,
+              map: map, 
+              title: titleText
+            });
 
-    // add to global marker manager
-    allMarkers.push(marker);
-  };
+            // add to global marker manager
+              allMarkers.push(marker);
+          };
 
-google.maps.event.addDomListener(window, 'load', initialize);
-
-        // google.maps.event.addDomListener(window, 'load', initialize);
-
-     </script>
+          google.maps.event.addDomListener(window, 'load', initialize);
+            
+</script>
 
 
 
@@ -109,6 +152,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     </div>
     <div id="map-canvas"></div>
     <div class="container">
+
 
 
 
@@ -124,7 +168,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
         </div> -->
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="navbar-brand"><a href="/"><strong>ITP Travels</strong></a></li>
+            <li class="navbar-brand"><a href="/"><strong>Pin Drop Travel</strong></a></li>
           </ul>
         <!--   <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="./">Default</a></li>
