@@ -101,10 +101,13 @@
 
 {% block scripts %}
 
+<!-- //need to loop though markers to show all of pins   -->
+
 <script>
 var loadMarkers = function() {
 	{% for idea in ideas %}
-	createMarker('{{ idea.latitude }}','{{ idea.longitude }}','{{idea.title}}');	
+	createMarker('{{ idea.latitude }}','{{ idea.longitude }}','{{idea.title}}');
+	
 	{% endfor %}
 };
 </script>

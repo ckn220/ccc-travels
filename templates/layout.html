@@ -24,10 +24,16 @@
 
     </head>
   <body>
-     <script>
+
+
+<script>
 
 var geocoder;
 var map;
+var allMarkers = [];
+var myMarker;
+var infoWindow;
+
 function initialize() {
   geocoder = new google.maps.Geocoder();
   var latlng = new google.maps.LatLng(-14.397, 150.644);
@@ -39,59 +45,14 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
   // load markers if available
-  if (loadMarkers != undefined) {
-    loadMarkers();
+    if (loadMarkers != undefined) {
+      loadMarkers();
+    }
+
   }
-
-  var point = new google.maps.LatLng(-14.397, 150.644);
-// create a marker
-  var marker = new google.maps.Marker({
-      map: map,
-      position: point,
-      // position: results[0].geometry.location
-      // title: titleText,
-  });
-
-// //info window contents
-   var contentString = '<div>Hello World TEST</div>';
-//       '<div id="siteNotice">'+
-//       '</div>'+
-//       '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-//       '<div id="bodyContent">'+
-//       '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-//       'sandstone rock formation in the southern part of the '+
-//       'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-//       'south west of the nearest large town, Alice Springs; 450&#160;km '+
-//       '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-//       'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-//       'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-//       'Aboriginal people of the area. It has many springs, waterholes, '+
-//       'rock caves and ancient paintings. Uluru is listed as a World '+
-//       'Heritage Site.</p>'+
-//       '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-//       'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-//       '(last visited June 22, 2009).</p>'+
-//       '</div>';
-
-// // info window contents 
-  var infowindow = new google.maps.InfoWindow({
-      content: contentString
-  });
-
-  //click event
-  google.maps.event.addListener(marker, 'click', function() {
-    
-    infowindow.open(map,marker);
-   });
-  }
-
-
-  // google.maps.event.addDomListener(window, 'load', initialize);
-
-
-
 
   function codeAddress() {
+    
     var address = document.getElementById('address').value;
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
@@ -99,18 +60,11 @@ function initialize() {
           // recenter map to new location
           map.setCenter(results[0].geometry.location);
 
-          console.log("new location at...");
-          console.log(results[0].geometry.location.lat());
-          console.log(results[0].geometry.location.lng());
+          // console.log("new location at...");
+          // console.log(results[0].geometry.location.lat());
+          // console.log(results[0].geometry.location.lng());
           $("#longitude").val(results[0].geometry.location.lng());
           $("#latitude").val(results[0].geometry.location.lat());
-
-          // create a marker
-          var marker = new google.maps.Marker({
-              map: map,
-              position: results[0].geometry.location
-             // title: titleText
-          });
 
            } else {
                 alert('Geocode was not successful for the following reason: ' + status);
@@ -118,29 +72,74 @@ function initialize() {
           });
         }
 
-
-          //need to loop though markers to show all of pins  
-
-          var allMarkers = [];
-      // add a marker to the map
-      // pass in lat, lng and title text
-          var createMarker = function(lat,lng,titleText) {
-        
-        // create google lat lng object
-          var latlng = new google.maps.LatLng(lat, lng); 
-
-            // create marker, 
-            marker = new google.maps.Marker({
-              position: latlng,
-              map: map, 
-              title: titleText
+        function createInfoWindow(content, latLng){
+            var infowindow = new google.maps.InfoWindow({
+              position: latLng,
+              content : content
             });
 
-            // add to global marker manager
-              allMarkers.push(marker);
+            return infowindow;
+        }
+
+        function openInfoWindow (content, latLng, map) {
+          if(infoWindow){
+            infoWindow.close();
+            infoWindow = null;
+          }
+
+          infoWindow = createInfoWindow(content, latLng);
+          infoWindow.open(map);
+            
+        }    
+
+        function createMarker(lat,lng,titleText, bodyText) {
+          console.log('createMarker');  
+          // create google lat lng object
+            var latLng = new google.maps.LatLng(String(lat), String(lng)); 
+
+            var marker = new google.maps.Marker({
+              position: latLng,
+              map: map, 
+              title: titleText,
+            });
+
+            allMarkers.push(marker);  
+
+            google.maps.event.addListener(marker, 'click', function(event) {
+              var latLng = event.latLng;
+              bodyText = bodyText || 'Some Body Text';  //if body text is true run it, otherwise display string
+              openInfoWindow(bodyText, latLng, map);
+            });             
           };
 
+
           google.maps.event.addDomListener(window, 'load', initialize);
+
+
+          var car = createCar(4, 'green');
+
+          car.constructor('Some variable');
+          car.drive();
+          console.log(car.color);
+
+
+
+
+          function createCar(wheels, color){
+            var MyCar = {
+              color: color,
+              wheels: wheels,
+              constructor: function(t){
+                console.log('constructor ran', t)    
+              },
+              drive: function(){
+                console.log('Driving');
+              }     
+            }
+
+            return MyCar;
+
+          }
             
 </script>
 
