@@ -3,11 +3,78 @@
 {% block body %}
 
 
-<div class="row">
 
-	<!-- left column -->
-	<div class="col-md-6">
-		<legend><h3><strong>Recent Submissions</strong></h3></legend>
+
+<!-- right column -->
+<div class="traveler-form">
+
+	<form method="POST" role="form">
+
+		<div id="geocode">
+      	<input id="address" type="textbox" value="Enter Location Here">
+      	<input type="button" value="Geocode" onclick="codeAddress()">
+    	</div>
+
+		<div id="left_side">
+			<label for="creator">Your Name</label>
+			<input type="text" id="creator" name="creator" class="form-control" value="">
+		</div>
+
+		<div id="center_side">
+			<label for="title">From</label>
+			<input type="text" id="title" name="title" class="form-control">
+			<!-- title means where you're from -->
+		</div>
+		
+		<div id="right_side">
+			<label for="idea">Description of Restaurant</label>
+			<textarea name="idea" id="idea" class="form-control"></textarea>
+		</div>
+
+		<div class="rating">
+			<label for "star">Rating</label>
+		<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+		</div>
+		
+		<div class="form-group">
+			<!-- <label for="latitude">Latitude</label> -->
+			<input type="hidden" id="latitude" name="latitude" class="form-control" value="">
+		</div>
+
+		<div class="form-group">
+		<!-- 	<label for="longitude">Longitude</label> -->
+			<input type="hidden" id="longitude" name="longitude" class="form-control" value="">
+		</div>
+
+</div>
+	<!-- 	<label>Which 'burg should I see?</label>
+		<legend></legend><p class="help-block">Select your favorite 'burg</p></legend>
+		{# comment - loop through categories and create checkboxes #}
+		{% for c in categories|sort %}
+		<div class="checkbox">
+			<label>
+				<input type="checkbox" name="categories" value="{{c}}"> {{ c|title }}
+			</label>
+		</div>
+		{% endfor %} -->
+
+
+
+		<button type="submit" class="btn btn-primary">Add Restaurant</button>
+	</form>
+</div>
+
+</br>
+
+
+
+	<div class="traveler-form">
+		<legend><h3><span id="recent_sub">Recent Submissions</span></h3></legend>
+	</div>
+</br>
+</br>
+</br>
+</br>
 
 		{% for idea in ideas %}
 			
@@ -38,58 +105,10 @@
 		
 	</div>
 
-	<!-- right column -->
-	<div class="col-md-6">
-
-		<form method="POST" role="form">
-			<legend><h3><strong>Traveller Info</strong></h3></legend>
-			<div class="form-group">
-				<label for="creator">Name</label>
-				<input type="text" id="creator" name="creator" class="form-control" value="">
-			</div>
-
-			<div class="form-group">
-				<label for="title">From</label>
-				<input type="text" id="title" name="title" class="form-control">
-				<!-- title means where you're from -->
-			</div>
-			
-			<div class="form-group">
-				<label for="idea">Why you love to travel</label>
-				<textarea name="idea" id="idea" class="form-control"></textarea>
-			</div>
-			
-			<div class="form-group">
-				<!-- <label for="latitude">Latitude</label> -->
-				<input type="hidden" id="latitude" name="latitude" class="form-control" value="">
-			</div>
-
-			<div class="form-group">
-			<!-- 	<label for="longitude">Longitude</label> -->
-				<input type="hidden" id="longitude" name="longitude" class="form-control" value="">
-			</div>
-
-
-		<!-- 	<label>Which 'burg should I see?</label>
-			<legend></legend><p class="help-block">Select your favorite 'burg</p></legend>
-			{# comment - loop through categories and create checkboxes #}
-			{% for c in categories|sort %}
-			<div class="checkbox">
-				<label>
-					<input type="checkbox" name="categories" value="{{c}}"> {{ c|title }}
-				</label>
-			</div>
-			{% endfor %} -->
 
 
 
-			<button type="submit" class="btn btn-primary">Add Destinations</button>
-		</form>
-	</div>
 
-	
-
-</div>
 
 {% endblock %}
 

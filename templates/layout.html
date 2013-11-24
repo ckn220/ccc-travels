@@ -19,8 +19,8 @@
 
         <!-- Get Font from Google http://www.google.com/webfonts -->
         <link href='http://fonts.googleapis.com/css?family=Peralta' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Raleway+Dots' rel='stylesheet' type='text/css'>
-
+        <!-- <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:100' rel='stylesheet' type='text/css'> -->
+        <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:700' rel='stylesheet' type='text/css'>
         
 
     </head>
@@ -93,6 +93,19 @@ function initialize() {
             
         }    
 
+
+          //Shilpan's suggestion
+
+        //   $.post("xyz", function(data){
+        //     //{lat: 343, lon: 324, title: "svd"}
+        //     content = "<p>" + data.title + "</p>";
+      
+        //   });
+           
+        // }    
+
+
+
         function createMarker(lat,lng,titleText, bodyText) {
           console.log('createMarker');  
           // create google lat lng object
@@ -146,19 +159,19 @@ function initialize() {
 
 
 
-    <div id="panel">
-      <input id="address" type="textbox" value="Sydney, NSW">
-      <input type="button" value="Geocode" onclick="codeAddress()">
-    </div>
+   
     <div id="map-canvas"></div>
     <div class="container">
 
 
+    <div class="jumbotron" id="map_canvas"></div>
+        <br>
+    <div class="jumbotron">
 
 
 
       <!-- Static navbar -->
-      <div class="navbar navbar-default">
+      <!-- <div class="navbar navbar-default"> -->
         <!-- <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
@@ -166,34 +179,21 @@ function initialize() {
             <span class="icon-bar"></span>
           </button>
         </div> -->
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="navbar-brand"><a href="/"><strong>Pin Drop Travel</strong></a></li>
-          </ul>
+        
         <!--   <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="./">Default</a></li>
             <li><a href="../navbar-static-top/">Static top</a></li>
             <li><a href="../navbar-fixed-top/">Fixed top</a></li>
           </ul> -->
-        </div><!--/.nav-collapse -->
-      </div>
+        <!--/.nav-collapse -->
+   <!--    </div> -->
 
       <!-- Main component for a primary marketing message or call to action -->
      
 
-      <div class="jumbotron" id="map_canvas"></div>
-        <br>
-      <div class="jumbotron">
+    
         
         {% block body %}{% endblock %}
-
-      </div>      
-
-            <footer>
-                <a href="/"><strong>Back to ITP Travels</strong></a>
-            </footer>
-
-        </div> <!-- /container -->
 
       
 

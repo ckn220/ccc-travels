@@ -2,13 +2,13 @@
 
 
 {% block body %}
-
+<!-- 
 <div class="row">
 
 	<!-- displaying results -->
 	<div class="col-md-12">
 		<h4>By {{ idea.creator }} from {{ idea.title }}</h4>
-		<h4>Reason for Travel<a href="/ideas/{{ idea.slug }}"> {{ idea.idea }}</a></h4>
+		<h4>Review of Restaurant<a href="/ideas/{{ idea.slug }}"> {{ idea.idea }}</a></h4>
 		<p>{{ idea.latitude }}</p>
 		<p>{{ idea.longitude }}</p>
 		<p>
@@ -23,8 +23,18 @@
 		
 		<hr>
 
-		<h3>Comments ( {{ idea.comments|length }} )</h3>
-		<div class="row">
+		<footer>
+                <a href="/"><strong>Back to Locavore</strong></a>
+        </footer>
+	
+	</div>	
+
+</br> 
+
+
+		
+
+
 
 			<!-- DISPLAY COMMENTS -->
 			<!-- <div class="col-md-5">
@@ -58,7 +68,7 @@
 	</div>
  -->
 
-</div>	
+
 
 </div>
 
@@ -66,7 +76,9 @@
 
 
 {% block styles %}{% endblock %}
+
 {% block scripts %}
+
 <script>
 var loadMarkers = function() {
 	// map text box populate
