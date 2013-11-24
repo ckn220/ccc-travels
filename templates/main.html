@@ -11,9 +11,10 @@
 	<form method="POST" role="form">
 
 		<div id="geocode">
-      	<input id="address" type="textbox" value="Enter Location Here">
+      	<input id="address" class="controls" type="text" value="Enter Location Here">
       	<input type="button" value="Geocode" onclick="codeAddress()">
     	</div>
+
 
 		<div id="left_side">
 			<label for="creator">Your Name</label>
@@ -69,7 +70,7 @@
 
 
 	<div class="traveler-form">
-		<legend><h3><span id="recent_sub">Recent Submissions</span></h3></legend>
+		<legend><h3><span id="recent_sub">Recent Submissions to Locavore</span></h3></legend>
 	</div>
 </br>
 </br>
@@ -82,7 +83,7 @@
 				{{ idea.latitude }}
 				{{ idea.longitude }}
 			</h4>
-				<h4>Travels <a href="/ideas/{{ idea.slug }}"> {{ idea.idea }}</a></h4>
+				<h4>Restaurant Description: <a href="/ideas/{{ idea.slug }}"> {{ idea.idea }}</a></h4>
 						
 			<p>
 			

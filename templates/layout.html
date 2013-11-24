@@ -15,7 +15,8 @@
         <link rel="stylesheet" href="/static/css/navbar.css"> 
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+
 
         <!-- Get Font from Google http://www.google.com/webfonts -->
         <link href='http://fonts.googleapis.com/css?family=Peralta' rel='stylesheet' type='text/css'>
@@ -45,6 +46,10 @@ function initialize() {
   }
   map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
+  var input = document.getElementById('address');
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete.bindTo('bounds', map);
+
   // load markers if available
     if (loadMarkers != undefined) {
       loadMarkers();
@@ -60,6 +65,17 @@ function initialize() {
           
           // recenter map to new location
           map.setCenter(results[0].geometry.location);
+
+          //var latLng = new google.maps.LatLng(results[0].geometry.location); 
+          var location = results[0].geometry.location;
+
+          createMarker(location.lat(), location.lng(),'some text');
+
+        
+
+          // lat,lng,titleText, bodyText
+          
+          //console.dir(results[0].geometry);
 
           // console.log("new location at...");
           // console.log(results[0].geometry.location.lat());
@@ -123,7 +139,9 @@ function initialize() {
               var latLng = event.latLng;
               bodyText = bodyText || 'Some Body Text';  //if body text is true run it, otherwise display string
               openInfoWindow(bodyText, latLng, map);
-            });             
+            });  
+
+            return marker;           
           };
 
 
