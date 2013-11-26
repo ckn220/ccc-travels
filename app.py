@@ -4,12 +4,26 @@ from flask import jsonify
 from flask import Flask, request, render_template, redirect, abort
 from unidecode import unidecode
 
+from werkzeug import secure_filename
+
 # mongoengine database module
 from flask.ext.mongoengine import MongoEngine
 
+# import data models
+import models
+
+# Amazon AWS library
+import boto
+
+# Python Image Library
+import StringIO
 
 app = Flask(__name__)   # create our flask app
 # app.config['CSRF_ENABLED'] = False
+
+app.secret_key = os.environ.get('SECRET_KEY') # put SECRET_KEY variable inside .env file with a random string of alphanumeric characters
+app.config['CSRF_ENABLED'] = False
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024 # 16 megabyte file upload
 
 # --------- Database Connection ---------
 # MongoDB connection to MongoLab's database
@@ -17,20 +31,36 @@ app.config['MONGODB_SETTINGS'] = {'HOST':os.environ.get('MONGOLAB_URI'),'DB': 'i
 app.logger.debug("Connecting to MongoLabs")
 db = MongoEngine(app) # connect MongoEngine with Flask App
 
-# import data models
-import models
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
+
+# DO I NEED? NO LONGER RELEVANT
 # hardcoded categories for the checkboxes on the form
 categories = ['St. Petersburg','Johannesburg','Salzburg','Pittsburgh','Spitzberg','Vicksburg','Harrisburg','Hamburg','Brandenburg']
+
 
 # --------- Routes ----------
 # this is our main page
 @app.route("/", methods=['GET','POST'])
 def index():
 
-	# if form was submitted and it is valid...
-	if request.method == "POST":
+	#PHOTO upload route section
+	# get Idea form from models.py
+	photo_upload_form = models.photo_upload_form(request.form)
 	
+	# if form was submitted and it is valid...
+	if request.method == "POST" and photo_upload_form.validate():
+		
+		uploaded_file = request.files['fileupload']
+		# app.logger.info(file)
+		# app.logger.info(file.mimetype)
+		# app.logger.info(dir(file))
+		
+		# Uploading is fun
+		# 1 - Generate a file name with the datetime prefixing filename
+		# 2 - Connect to s3
+		# 3 - Get the s3 bucket, put the file
+		# 4 - After saving to s3, save data to database
 		# get form data - create new idea
 		idea = models.Idea()
 		idea.creator = request.form.get('creator','anonymous')
@@ -40,31 +70,124 @@ def index():
 		idea.latitude = request.form.get('latitude','')
 		idea.longitude = request.form.get('longitude','')
 		idea.categories = request.form.getlist('categories') # getlist will pull multiple items 'categories' into a list
-		
-		idea.save() # save it
+					
+		# idea.save() # save it
+			
+			# redirect to the new idea page
+		# return redirect('/ideas/%s' % idea.slug)
 
-		# redirect to the new idea page
-		return redirect('/ideas/%s' % idea.slug)
+		if uploaded_file and allowed_file(uploaded_file.filename):
+			# return "upload file"
+			# create filename, prefixed with datetime
+			now = datetime.datetime.now()
+			filename = now.strftime('%Y%m%d%H%M%s') + "-" + secure_filename(uploaded_file.filename)
+			# thumb_filename = now.strftime('%Y%m%d%H%M%s') + "-" + secure_filename(uploaded_file.filename)
+
+			# connect to s3
+			s3conn = boto.connect_s3(os.environ.get('AWS_ACCESS_KEY_ID'),os.environ.get('AWS_SECRET_ACCESS_KEY'))
+
+			# open s3 bucket, create new Key/file
+			# set the mimetype, content and access control
+			b = s3conn.get_bucket(os.environ.get('AWS_BUCKET')) # bucket name defined in .env
+			
+			k = b.new_key(b) # create a new Key (like a file)
+			k.key = filename # set filename
+			k.set_metadata("Content-Type", uploaded_file.mimetype) # identify MIME type
+			k.set_contents_from_string(uploaded_file.stream.read()) # file contents to be added
+			k.set_acl('public-read') # make publicly readable
+
+			# if content was actually saved to S3 - save info to Database
+			if k and k.size > 0:
+				
+				# submitted_image = models.Image()
+				# submitted_image.title = request.form.get('title')
+				# submitted_image.description = request.form.get('description')
+				# submitted_image.postedby = request.form.get('postedby')
+				# submitted_image.filename = filename # same filename of s3 bucket file
+				# submitted_image.save()
+				
+				idea.filename = filename
+				idea.save()	#save it
+
+
+			return redirect('/')
+
+		else:
+			return "uhoh there was an error " + uploaded_file.filename
+
+
 
 	else:
-
-		# for form management, checkboxes are weird (in wtforms)
-		# prepare checklist items for form
-		# you'll need to take the form checkboxes submitted
-		# and idea_form.categories list needs to be populated.
-		if request.method=="POST" and request.form.getlist('categories'):
-			for c in request.form.getlist('categories'):
-				idea_form.categories.append_entry(c)
-
-
+		# get existing images
+		images = models.Idea.objects.order_by('-timestamp')
+		
 		# render the template
 		templateData = {
+			# 'images' : images,
 			'ideas' : models.Idea.objects(),
-			'categories' : categories
+			'form' : photo_upload_form,
+			'categories' : categories,
 		}
-		app.logger.debug(templateData)
 
+		# app.logger.debug(templateData)
 		return render_template("main.html", **templateData)
+
+
+		        #OLD REGULAR FORM ROUTE INFO
+
+				# else:
+
+				# 	# for form management, checkboxes are weird (in wtforms)
+				# 	# prepare checklist items for form
+				# 	# you'll need to take the form checkboxes submitted
+				# 	# and idea_form.categories list needs to be populated.
+				# 	if request.method=="POST" and request.form.getlist('categories'):
+				# 		for c in request.form.getlist('categories'):
+				# 			idea_form.categories.append_entry(c)
+
+
+					
+					
+
+
+#MORE PHOTO 
+@app.route('/delete/<imageid>')
+def delete_image(imageid):
+        
+        image = models.Image.objects.get(id=imageid)
+        if image:
+
+                # delete from s3
+        
+                # connect to s3
+                s3conn = boto.connect_s3(os.environ.get('AWS_ACCESS_KEY_ID'),os.environ.get('AWS_SECRET_ACCESS_KEY'))
+
+                # open s3 bucket, create new Key/file
+                # set the mimetype, content and access control
+                bucket = s3conn.get_bucket(os.environ.get('AWS_BUCKET')) # bucket name defined in .env
+                k = bucket.new_key(bucket)
+                k.key = image.filename
+                bucket.delete_key(k)
+
+                # delete from Mongo        
+                image.delete()
+
+                return redirect('/')
+
+        else:
+                return "Unable to find requested image in database."
+
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.lower().rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+#END OF PHOTO
+
 
 # Display all ideas for a specific category
 @app.route("/category/<cat_name>")
