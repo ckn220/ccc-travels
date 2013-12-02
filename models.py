@@ -22,6 +22,7 @@ class Idea(Document):
 	#added mongoengine prefix to all fields for photo
 	creator = mongoengine.StringField(max_length=120, required=True, verbose_name="First name")
 	title = mongoengine.StringField(max_length=120, required=True)
+	# restaurant_description = mongoengine.StringField(max_length=120, required=True)
 	slug = mongoengine.StringField()
 	idea = mongoengine.StringField(required=True, verbose_name="What is your idea?")
 	latitude = mongoengine.StringField(max_length=120, required=True)

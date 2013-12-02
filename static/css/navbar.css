@@ -27,7 +27,7 @@ below centers the input font in the div
 }
 
 #map_canvas {
-height: 800px;
+height: 692px;
 width: 1140px;
 margin: 40px auto 30px;
 }
@@ -46,7 +46,7 @@ margin: 40px auto 30px;
 
 
 .traveler-form {
-  font-family: 'Josefin Slab', serif;
+  font-family: 'Cutive Mono', serif;
   font-weight: bold;
   /*margin: 80px auto 40px;*/
   
@@ -57,7 +57,7 @@ margin: 40px auto 30px;
 
 .traveler-form #patron_info{
 
-  font-family: 'Josefin Slab', serif;
+ font-family: 'Cutive Mono', serif;
   font-weight: bold;
   font-size: 40px;
   line-height: 175%
@@ -66,7 +66,7 @@ margin: 40px auto 30px;
 
 .traveler-form #recent_sub {
 
-  font-family: 'Josefin Slab', serif;
+  font-family: 'Cutive Mono', serif;
   font-weight: bold;
   font-size: 30px;
 
@@ -75,7 +75,7 @@ margin: 40px auto 30px;
 
 .traveler-form-2 .locavore {
 
-  font-family: 'Josefin Slab', serif;
+  font-family: 'Cutive Mono', serif;
   text-align: left;
   font-size: 60px;
   margin-left: 115px;
@@ -91,8 +91,36 @@ margin: 40px auto 30px;
 
   margin: 80px auto 40px;
 
+}
+
+.traveler-form #add {
+
+font-size: 27px;
+margin-bottom: 20px;
 
 }
+
+
+
+
+#welcome {
+
+  /*margin: 80px auto 40px;*/
+  font-family: 'Cutive Mono', serif;
+  margin-left: 380px;
+  font-size: 40px;
+  margin-bottom: 14px;
+}
+
+#welcome2 {
+
+  /*margin: 80px auto 40px;*/
+  font-family: 'Cutive Mono', serif;
+  margin-left: 380px;
+  font-size: 20px;
+}
+
+
 
 #geocode input {
   color: grey;

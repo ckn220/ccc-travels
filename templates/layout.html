@@ -21,7 +21,7 @@
         <!-- Get Font from Google http://www.google.com/webfonts -->
         <link href='http://fonts.googleapis.com/css?family=Peralta' rel='stylesheet' type='text/css'>
         <!-- <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:100' rel='stylesheet' type='text/css'> -->
-        <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
         
 
     </head>
@@ -148,36 +148,37 @@ function initialize() {
           google.maps.event.addDomListener(window, 'load', initialize);
 
 
-          var car = createCar(4, 'green');
+          // var car = createCar(4, 'green');
 
-          car.constructor('Some variable');
-          car.drive();
-          console.log(car.color);
-
-
+          // car.constructor('Some variable');
+          // car.drive();
+          // console.log(car.color);
 
 
-          function createCar(wheels, color){
-            var MyCar = {
-              color: color,
-              wheels: wheels,
-              constructor: function(t){
-                console.log('constructor ran', t)    
-              },
-              drive: function(){
-                console.log('Driving');
-              }     
-            }
 
-            return MyCar;
 
-          }
+          // function createCar(wheels, color){
+          //   var MyCar = {
+          //     color: color,
+          //     wheels: wheels,
+          //     constructor: function(t){
+          //       console.log('constructor ran', t)    
+          //     },
+          //     drive: function(){
+          //       console.log('Driving');
+          //     }     
+          //   }
+
+          //   return MyCar;
+
+          // }
             
 </script>
 
 
 
-   
+    <h4 id="welcome"><strong>Locavore</strong></h4>
+    <h4 id="welcome2"><strong>Eat like a local.</strong> Discover the restaurants that locals love most.</h4>
     <div id="map-canvas"></div>
     <div class="container">
 

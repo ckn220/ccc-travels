@@ -9,6 +9,11 @@
 	<div class="col-md-12">
 		<h4>By {{ idea.creator }} from {{ idea.title }}</h4>
 		<h4>Review of Restaurant<a href="/ideas/{{ idea.slug }}"> {{ idea.idea }}</a></h4>
+		
+	<!-- 	Somewhere here hard code: https://s3.amazonaws.com/restaurant_photos_locavore/ + {{idea.filename?}}
+		to display image
+ -->
+
 		<p>{{ idea.latitude }}</p>
 		<p>{{ idea.longitude }}</p>
 		<p>

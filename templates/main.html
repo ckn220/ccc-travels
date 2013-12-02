@@ -10,11 +10,14 @@
 
 	<form method="POST" enctype="multipart/form-data" role="form">
 
-		{{form.errors}}
-		{{ form.csrf_token }}
+		<!-- {{form.errors}}	 -->	<!-- comment this out to get rid of brackets -->
+		{{form.csrf_token}}
+
+		<h2 class="traveler-form" id="add"><strong>Locals, add your favorite restaurant to the map.</strong></h2>
+		<div>Restaurant Address</div>
 
 		<div id="geocode">
-      	<input id="address" class="controls" type="text" value="Enter Location Here">
+      	<input id="address" class="controls" type="text" value="">
       	<input type="button" value="Geocode" onclick="codeAddress()">
     	</div>
 
@@ -36,10 +39,10 @@
 			<textarea name="idea" id="idea" class="form-control"></textarea>
 		</div>
 
-		<div class="rating">
+		<!-- <div class="rating">
 			<label for "star">Rating</label>
 		<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-		</div>
+		</div> -->
 
 		<div class="form-group">
 				{{ form.fileupload.label }}
@@ -91,7 +94,7 @@
 			<!-- Photo Section -->
 
 		   <div class="col-md-7">
-                        <h2>Images</h2>
+                        <!-- <h2>Images</h2> -->
                         <hr>
                         {% for img in images %}
                                 <a title="{{img.title}}" alt="Title:{{img.title}}. Description: {{img.description}}" href="https://s3.amazonaws.com/dwd_uploads/{{img.filename}}">
@@ -115,15 +118,16 @@
 </br>
 </br>
 </br>
-</br>
 
 		{% for idea in ideas %}
 			
-			<h4>by {{ idea.creator }} from {{ idea.title }} to 
+			<h4>By {{ idea.creator }}, from {{ idea.title }}</h4>
+			<h4>Restaurant Description: <a href="/ideas/{{ idea.slug }}"> {{ idea.idea }}</a></h4>  
+			<h4>
 				{{ idea.latitude }}
 				{{ idea.longitude }}
 			</h4>
-				<h4>Restaurant Description: <a href="/ideas/{{ idea.slug }}"> {{ idea.idea }}</a></h4>
+				
 						
 			<p>
 			
