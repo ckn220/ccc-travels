@@ -1,4 +1,4 @@
-ccc-travels
+Locavore
 ===========
 
 Locavore is an outlet for intensely proud native foodies to showcase their culinary experiences and preferences. Additionally, it is a great resource for those who are traveling to gain insights and recommendations from a constantly updating network of unique restaurants patroned and endorsed by residents of a region. 
