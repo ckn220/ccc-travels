@@ -137,7 +137,7 @@ function initialize() {
 
             google.maps.event.addListener(marker, 'click', function(event) {
               var latLng = event.latLng;
-              bodyText = bodyText || 'Some Body Text';  //if body text is true run it, otherwise display string
+              bodyText = bodyText || 'Description Omitted';  //if body text is true run it, otherwise display string
               openInfoWindow(bodyText, latLng, map);
             });  
 
@@ -177,15 +177,16 @@ function initialize() {
 
 
 
-    <h4 id="welcome"><strong>Locavore</strong></h4>
-    <h4 id="welcome2"><strong>Eat like a local.</strong> Discover the restaurants that locals love most.</h4>
-    <div id="map-canvas"></div>
+    
+   <!--  <div id="map-canvas"></div> -->
     <div class="container">
-
+    <h4 id="welcome"><strong>Locavore</strong></h4>
+    <p id="welcome2"><strong>Eat like a local.</strong> Discover the restaurants that locals love most.</p>
 
     <div class="jumbotron" id="map_canvas"></div>
         <br>
     <div class="jumbotron">
+
 
 
 
@@ -221,6 +222,6 @@ function initialize() {
        
 
         {% block scripts %}{% endblock %}
-
+      </div>
     </body>
 </html>

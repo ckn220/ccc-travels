@@ -110,7 +110,7 @@ def index():
 				idea.save()	#save it
 
 
-			return redirect('/')
+			return redirect('/ideas/%s' % idea.slug)
 
 		else:
 			return "uhoh there was an error " + uploaded_file.filename

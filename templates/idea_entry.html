@@ -10,9 +10,9 @@
 		<h4>By {{ idea.creator }} from {{ idea.title }}</h4>
 		<h4>Review of Restaurant<a href="/ideas/{{ idea.slug }}"> {{ idea.idea }}</a></h4>
 		
-	<!-- 	Somewhere here hard code: https://s3.amazonaws.com/restaurant_photos_locavore/ + {{idea.filename?}}
-		to display image
- -->
+	    <div><img src="https://s3.amazonaws.com/restaurant_photos_locavore/" % {{idea.photo_form}}></div>
+	
+
 
 		<p>{{ idea.latitude }}</p>
 		<p>{{ idea.longitude }}</p>
@@ -84,13 +84,17 @@
 
 {% block scripts %}
 
+
+
+
+<!-- Almost certainly coming from javascript issue below for not displaying single marker with tag. -->
 <script>
 var loadMarkers = function() {
-	// map text box populate
-	jQuery("#address").val('{{ idea.title }}');
-	
-	//put marker
-	createMarker('{{ idea.latitude }}','{{ idea.longitude }}','{{idea.title}}', "");	
+        // map text box populate
+        jQuery("#address").val('{{ idea.title }}');
+        
+        //put marker
+        createMarker('{{ idea.latitude }}','{{ idea.longitude }}','{{idea.title}}', "");        
 };
 </script>
 
