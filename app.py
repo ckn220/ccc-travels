@@ -113,8 +113,9 @@ def index():
 			return redirect('/ideas/%s' % idea.slug)
 
 		else:
-			return "uhoh there was an error " + uploaded_file.filename
-
+			# return "uhoh there was an error " + uploaded_file.filename
+			idea.save()
+			return redirect('/ideas/%s' % idea.slug)
 
 
 	else:

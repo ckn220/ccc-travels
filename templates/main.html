@@ -121,13 +121,16 @@
 
 		{% for idea in ideas %}
 			
-			<h4>By {{ idea.creator }}, from {{ idea.title }}</h4>
-			<h4>Restaurant Description: <a href="/ideas/{{ idea.slug }}"> {{ idea.idea }}</a></h4>  
-			<h4>
+			
+			<h3>Restaurant Description: <a href="/ideas/{{ idea.slug }}"> {{ idea.idea }}</a></h3> 
+			<h3>By {{ idea.creator }} from {{ idea.title }}</h3> 
+			<!-- <h4 id="hidden">
 				{{ idea.latitude }}
 				{{ idea.longitude }}
-			</h4>
+			</h4> -->
 				
+			<h3>added: {{ idea.timestamp.strftime("%a %m/%d/%y %I:%M%p ") }}</h3>
+
 						
 			<p>
 			

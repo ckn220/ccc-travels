@@ -6,16 +6,16 @@
 <div class="row">
 
 	<!-- displaying results -->
-	<div class="col-md-12">
+	<div class="traveler-form">
 		<h4>By {{ idea.creator }} from {{ idea.title }}</h4>
-		<h4>Review of Restaurant<a href="/ideas/{{ idea.slug }}"> {{ idea.idea }}</a></h4>
+		<h4 id="review_state">Review of Restaurant: </br><!-- <a href="/ideas/{{ idea.slug }}"> --> {{ idea.idea }}<!-- </a> --></h4>
 		
-	    <div><img src="https://s3.amazonaws.com/restaurant_photos_locavore/" % {{idea.photo_form}}></div>
+	    <div><img src="https://s3.amazonaws.com/restaurant_photos_locavore/{{idea.filename}}"></div>
 	
 
 
-		<p>{{ idea.latitude }}</p>
-		<p>{{ idea.longitude }}</p>
+<!-- 		<p>{{ idea.latitude }}</p>
+		<p>{{ idea.longitude }}</p> -->
 		<p>
 			<ul>
 			{% for c in idea.categories %}
@@ -24,17 +24,14 @@
 			</ul>
 		</p>
 
-		<p>added: {{ idea.timestamp.strftime("%a %m/%d %I:%M%p ") }}</p>
+		<p>added: {{ idea.timestamp.strftime("%a %m/%d/%y %I:%M%p ") }}</p>
 		
-		<hr>
-
 		<footer>
                 <a href="/"><strong>Back to Locavore</strong></a>
         </footer>
 	
 	</div>	
 
-</br> 
 
 
 		

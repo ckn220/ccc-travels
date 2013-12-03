@@ -125,7 +125,8 @@ function initialize() {
         function createMarker(lat,lng,titleText, bodyText) {
           console.log('createMarker');  
           // create google lat lng object
-            var latLng = new google.maps.LatLng(String(lat), String(lng)); 
+            var latLng = new google.maps.LatLng(lat,lng);
+            console.log(latLng) 
 
             var marker = new google.maps.Marker({
               position: latLng,
@@ -137,7 +138,7 @@ function initialize() {
 
             google.maps.event.addListener(marker, 'click', function(event) {
               var latLng = event.latLng;
-              bodyText = bodyText || 'Description Omitted';  //if body text is true run it, otherwise display string
+              bodyText = bodyText || 'No Description Yet';  //if body text is true run it, otherwise display string
               openInfoWindow(bodyText, latLng, map);
             });  
 
@@ -180,12 +181,12 @@ function initialize() {
     
    <!--  <div id="map-canvas"></div> -->
     <div class="container">
-    <h4 id="welcome"><strong>Locavore</strong></h4>
-    <p id="welcome2"><strong>Eat like a local.</strong> Discover the restaurants that locals love most.</p>
+      <h4 id="welcome"><strong><a href="/">Locavore</a></strong></h4>
+      <p id="welcome2"><strong>Eat like a local.</strong> Discover the restaurants that locals love most.</p>
 
-    <div class="jumbotron" id="map_canvas"></div>
+      <div class="jumbotron" id="map_canvas"></div>
         <br>
-    <div class="jumbotron">
+      <div class="jumbotron">
 
 
 

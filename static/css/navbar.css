@@ -7,8 +7,21 @@ body {
 margin: 40px auto 40px;*/
 }
 
-h1 {
-font-family: Helvetica Neue, Helvetica, Arial;
+h2 {
+font-family: font-family: 'Cutive Mono', serif;
+font-size: 18px;
+font-style: normal;
+}
+
+h4 {
+font-family: 'Cutive Mono', serif;
+font-weight: bold;
+}
+
+h3 {
+font-family: 'Cutive Mono', serif;
+font-size: 22px;
+
 }
 
 
@@ -106,9 +119,19 @@ margin-bottom: 20px;
   /*margin: 80px auto 40px;*/
   font-family: 'Cutive Mono', serif;
   /*margin-left: 380px;*/
-  font-size: 40px;
+  font-size: 36px;
   margin-bottom: 14px;
 }
+
+#welcome a {
+  text-decoration: none;
+  color: black;
+}
+
+#welcome a:hover{
+  color: grey;
+}
+
 
 #welcome2 {
 
@@ -116,13 +139,18 @@ margin-bottom: 20px;
   font-family: 'Cutive Mono', serif;
 /*  margin-left: 380px;*/
   font-size: 20px;
-  margin-bottom: 26px;
+  margin-bottom: 36px;
 }
 
 
 
 #geocode input {
   color: grey;
+
+}
+
+.traveler-form #review_state {
+  font-size: 30px; 
 
 }
 
