@@ -8,7 +8,7 @@ margin: 40px auto 40px;*/
 }
 
 h2 {
-font-family: font-family: 'Cutive Mono', serif;
+font-family:  'Cutive Mono', serif;
 font-size: 18px;
 font-style: normal;
 }
@@ -41,6 +41,8 @@ below centers the input font in the div
 
 #map_canvas {
 height: 692px;
+margin-bottom: 42px;
+margin-top: 40px;
 }
 
 #panel {
@@ -80,6 +82,8 @@ height: 692px;
   font-family: 'Cutive Mono', serif;
   font-weight: bold;
   font-size: 30px;
+  margin: 60px 0 10px 0;
+
 
 }
 
@@ -104,10 +108,18 @@ height: 692px;
 
 }
 
+.traveler-form #geocode input[type=button] {
+
+color:red;
+
+}
+
 .traveler-form #add {
 
-font-size: 27px;
+font-family: 'Cutive Mono', serif;
+font-size: 30px;
 margin-bottom: 20px;
+font: grey;
 
 }
 
@@ -120,7 +132,7 @@ margin-bottom: 20px;
   font-family: 'Cutive Mono', serif;
   /*margin-left: 380px;*/
   font-size: 36px;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
 }
 
 #welcome a {
@@ -151,6 +163,17 @@ margin-bottom: 20px;
 
 .traveler-form #review_state {
   font-size: 30px; 
+
+}
+
+
+#footer_message {
+  font-family: 'Cutive Mono', serif;
+
+}
+
+#add_restaurant {
+  font-family: 'Cutive Mono', serif;
 
 }
 

@@ -13,12 +13,12 @@
 		<!-- {{form.errors}}	 -->	<!-- comment this out to get rid of brackets -->
 		{{form.csrf_token}}
 
-		<h2 class="traveler-form" id="add"><strong>Locals, add your favorite restaurants to the map.</strong></h2>
+		<h2 id="add"><strong>Locals, add your favorite restaurants to the map.</strong></h2>
 		<div>Restaurant Address</div>
 
 		<div id="geocode">
       	<input id="address" class="controls" type="text" value="">
-      	<input type="button" value="Geocode" onclick="codeAddress()">
+      	<input type="button" value="Drop your pin" onclick="codeAddress()">
     	</div>
 
 
@@ -90,30 +90,30 @@
 	</form>
 </div>
 
-</br>
+<!-- </br> -->
 			<!-- Photo Section -->
 
-		   <div class="col-md-7">
+		   <!-- <div class="col-md-7"> -->
                         <!-- <h2>Images</h2> -->
-                        <hr>
+<!--                        
                         {% for img in images %}
                                 <a title="{{img.title}}" alt="Title:{{img.title}}. Description: {{img.description}}" href="https://s3.amazonaws.com/dwd_uploads/{{img.filename}}">
                                 <img src="https://s3.amazonaws.com/dwd_uploads/{{img.filename}}" width="480"></a>
-                                <br>
+                       
                                 <h3>{{img.title}}</h3>
                                 <p>{{img.description}}
                                         <br>
                                         {{ img.postedby }} - {{ img.timestamp.strftime("%m/%d/%y")}}
                                 </p>
                                 <a href="/delete/{{img.id}}" class="btn btn-small btn-danger">delete</a>
-                                <hr>
+                                
                         {% endfor %}
                 </div>
 
 
-
+ -->
 	<div class="traveler-form">
-		<legend><h3><span id="recent_sub">Recent Submissions to Locavore</span></h3></legend>
+		<legend><h3 id="recent_sub">Recent Submissions to Locavore</h3></legend>
 	</div>
 </br>
 </br>
@@ -145,12 +145,17 @@
 				{% endfor %}
 			</ul>
 
+
+
 			<a class="label" href="/ideas/{{ idea.slug }}/edit">edit</a>
 			</p>
 			
 			<hr/>
 		{% endfor %}
-		
+
+		 <footer id="footer_message">
+                <a href="/"><strong>Refresh Locavore</strong></a>
+      	</footer>
 	</div>
 
 

@@ -88,10 +88,20 @@
 <script>
 var loadMarkers = function() {
         // map text box populate
-        jQuery("#address").val('{{ idea.title }}');
+        // jQuery("#address").val('{{ idea.title }}');
         
         //put marker
-        createMarker('{{ idea.latitude }}','{{ idea.longitude }}','{{idea.title}}', "");        
+        createMarker('{{ idea.latitude }}','{{ idea.longitude }}','{{idea.title}}', '{{idea.idea}}');
+
+        // var latLng = new google.maps.LatLng('{{ idea.latitude }}','{{ idea.longitude }}');
+        // console.log(latLng) 
+
+        // var marker = new google.maps.Marker({
+        //   position: latLng,
+        //   map: map, 
+        //   title: '{{idea.title}}'
+        // });
+        
 };
 </script>
 
