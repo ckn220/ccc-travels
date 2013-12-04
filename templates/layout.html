@@ -1,13 +1,9 @@
 
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>Locavore</title>
         <meta name="description" content="ITP Travels">
         <!-- Latest compiled and minified CSS -->
 <!--         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
@@ -46,12 +42,19 @@ function initialize() {
   }
   map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
+
+  //with Jonas, geocoder changes for autocomplete 
   var input = document.getElementById('address');
-  var autocomplete = new google.maps.places.Autocomplete(input);
-  autocomplete.bindTo('bounds', map);
+
+  if(input){
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', map);
+  }
+
+  
 
   // load markers if available
-    if (loadMarkers != undefined) {
+    if (loadMarkers) {
       loadMarkers();
     }
 
@@ -125,17 +128,19 @@ function initialize() {
         function createMarker(lat,lng,titleText, bodyText) {
           console.log('createMarker');  
           // create google lat lng object
-            var latLng = new google.maps.LatLng(lat,lng);
+            var latLng = new google.maps.LatLng(String(lat), String(lng));
             console.log(latLng) 
 
             var marker = new google.maps.Marker({
               position: latLng,
               map: map, 
               title: titleText,
+              // bodyText: bodyText,
             });
             console.log("here");
 
-            allMarkers.push(marker);  
+            allMarkers.push(marker);
+            console.log("also here");  
 
             google.maps.event.addListener(marker, 'click', function(event) {
               var latLng = event.latLng;
@@ -143,7 +148,8 @@ function initialize() {
               openInfoWindow(bodyText, latLng, map);
             });  
 
-            return marker;           
+            return marker; 
+            console.log("even here")          
           };
 
 
@@ -189,10 +195,6 @@ function initialize() {
         <br>
       <div class="jumbotron">
 
-     
-
-
-
       <!-- Static navbar -->
       <!-- <div class="navbar navbar-default"> -->
         <!-- <div class="navbar-header">
@@ -213,18 +215,10 @@ function initialize() {
 
       <!-- Main component for a primary marketing message or call to action -->
      
-
-    
-        
         {% block body %}{% endblock %}
-
-      
-
-       
-        <!-- Latest compiled and minified JavaScript -->
-       
 
         {% block scripts %}{% endblock %}
       </div>
+    </div>
     </body>
 </html>

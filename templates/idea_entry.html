@@ -1,9 +1,8 @@
 {% extends "layout.html" %}
 
-
 {% block body %}
-<!-- 
-<div class="row">
+ 
+<!-- <div class="row"> --> 
 
 	<!-- displaying results -->
 	<div class="traveler-form">
@@ -14,14 +13,14 @@
 	
 
 
-<!-- 		<p>{{ idea.latitude }}</p>
+		<!-- <p>{{ idea.latitude }}</p>
 		<p>{{ idea.longitude }}</p> -->
-		<p>
-			<ul>
-			{% for c in idea.categories %}
-			<li>{{ c|replace("_"," ") }}</li>
-			{% endfor %}
-			</ul>
+		<p> 
+				<ul>
+				{% for c in idea.categories %}
+				<li>{{ c|replace("_"," ") }}</li>
+				{% endfor %}
+				</ul>
 		</p>
 
 		<p>added: {{ idea.timestamp.strftime("%a %m/%d/%y %I:%M%p ") }}</p>
@@ -30,6 +29,13 @@
                 <a href="/"><strong>Back to Locavore</strong></a>
         </footer>
 	
+	</div>
+
+	<div>
+	<span id="idea-title">{{ idea.title }}</span>
+	<span id="idea-idea">{{ idea.idea }}</span>
+	<span id="idea-longitude">{{ idea.longitude }}</span>
+	<span id="idea-latitude">{{ idea.latitude }}</span>
 	</div>	
 
 
@@ -72,12 +78,13 @@
 
 
 
-</div>
+<!-- </div> -->
 
 {% endblock %}
 
+<!-- 
+{% block styles %}{% endblock %} -->
 
-{% block styles %}{% endblock %}
 
 {% block scripts %}
 
@@ -85,22 +92,33 @@
 
 
 <!-- Almost certainly coming from javascript issue below for not displaying single marker with tag. -->
+
 <script>
 var loadMarkers = function() {
+	
+
+	
         // map text box populate
         // jQuery("#address").val('{{ idea.title }}');
+
+        var title = $('#idea-title').text();
+        var idea = $('#idea-idea').text();
+        var longitude = $('#idea-longitude').text();
+        var latitude = $('#idea-latitude').text();
+
+        console.log('title', title);
         
-        //put marker
-        createMarker('{{ idea.latitude }}','{{ idea.longitude }}','{{idea.title}}', '{{idea.idea}}');
+        // put marker
+        createMarker(latitude,longitude,title,idea);
 
-        // var latLng = new google.maps.LatLng('{{ idea.latitude }}','{{ idea.longitude }}');
-        // console.log(latLng) 
+        var latLng = new google.maps.LatLng(latitude,longitude);
+        console.log(latLng) 
 
-        // var marker = new google.maps.Marker({
-        //   position: latLng,
-        //   map: map, 
-        //   title: '{{idea.title}}'
-        // });
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map, 
+          title: title
+        });
         
 };
 </script>
