@@ -177,6 +177,12 @@ font: grey;
 
 }
 
+.hide_me {
+  display: none;
+
+
+}
+
 
 /*#longitude {
 	display: hidden;
