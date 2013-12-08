@@ -13,7 +13,7 @@
 		<!-- {{form.errors}}	 -->	<!-- comment this out to get rid of brackets -->
 		{{form.csrf_token}}
 
-		<h2 id="add"><strong>Locals, add your favorite restaurants to the map.</strong></h2>
+		<h2 id="add"><strong>Locals</strong>, add your favorite restaurants to the map.</h2>
 		<div>Restaurant Address</div>
 
 		<div id="geocode">
@@ -32,6 +32,13 @@
 			<input type="text" id="title" name="title" class="form-control">
 			<!-- title means where you're from -->
 		</div>
+
+		<div id="center_side">
+			<label for="restaurant_name">Restaurant Name</label>
+			<input type="text" id="restaurant_name" name="restaurant_name" class="form-control">
+			<!-- title means where you're from -->
+		</div>
+		
 		
 		<div id="right_side">
 			<!-- This connects to body text where you submit description of restaurant -->
@@ -121,8 +128,8 @@
 
 		{% for idea in ideas %}
 			
-			
-			<h3>Restaurant Description: <a href="/ideas/{{ idea.slug }}"> {{ idea.idea }}</a></h3> 
+			<h3>Restaurant Title:  <a href="/ideas/{{ idea.slug }}"> {{ idea.restaurant_name }}</a></h3>
+			<h3>Restaurant Description:{{ idea.idea }}</h3> 
 			<h3>By {{ idea.creator }} from {{ idea.title }}</h3> 
 			<!-- <h4 id="hidden">
 				{{ idea.latitude }}
@@ -147,7 +154,7 @@
 
 
 
-			<a class="label" href="/ideas/{{ idea.slug }}/edit">edit</a>
+			<!-- <a class="label" href="/ideas/{{ idea.slug }}/edit">edit</a> -->
 			</p>
 			
 			<hr/>

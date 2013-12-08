@@ -67,6 +67,7 @@ def index():
 		idea.title = request.form.get('title','no title')
 		idea.slug = slugify(idea.title + " " + idea.creator)
 		idea.idea = request.form.get('idea','')
+		idea.restaurant_name = request.form.get('restaurant_name','')
 		idea.latitude = request.form.get('latitude','')
 		idea.longitude = request.form.get('longitude','')
 		idea.categories = request.form.getlist('categories') # getlist will pull multiple items 'categories' into a list

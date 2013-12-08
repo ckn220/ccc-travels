@@ -23,15 +23,15 @@
 
  .btn-primary {
  	width: 30%;
- 	height: 45px;
+ 	height: 60px;
  	font-size: 22px;
  	font-family: 'Cutive Mono', serif;
  	font-weight: bolder;
  	/*border: black;
  	border-style: solid;
 	border-width: 2px;*/
-	line-height: 15px;
-	margin-top: 10px;
+	line-height: 25px;
+	margin-top: 20px;
  }
 
  .btn-info {

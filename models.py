@@ -25,6 +25,7 @@ class Idea(Document):
 	# restaurant_description = mongoengine.StringField(max_length=120, required=True)
 	slug = mongoengine.StringField()
 	idea = mongoengine.StringField(required=True, verbose_name="What is your idea?")
+	restaurant_name = mongoengine.StringField(max_length=120, required=True)
 	latitude = mongoengine.StringField(max_length=120, required=True)
 	longitude = mongoengine.StringField(max_length=120, required=True)
 
