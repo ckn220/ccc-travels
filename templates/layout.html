@@ -34,7 +34,7 @@ var infoWindow;
 
 function initialize() {
   geocoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng(-14.397, 150.644);
+  var latlng = new google.maps.LatLng(-5.397, 25.644);
   var mapOptions = {
     zoom: 2,
     center: latlng,
@@ -124,7 +124,7 @@ function initialize() {
 
 
 
-        function createMarker(lat,lng,titleText, bodyText) {
+        function createMarker(lat,lng,titleText, bodyText, restaurant_name) {
           console.log('createMarker');  
           // create google lat lng object
             var latLng = new google.maps.LatLng(String(lat), String(lng));
@@ -133,7 +133,8 @@ function initialize() {
             var marker = new google.maps.Marker({
               position: latLng,
               map: map, 
-              title: titleText,
+              // title: titleText,
+              // restaurant_name: restaurant_name,
               // bodyText: bodyText,
             });
             console.log("here");
@@ -143,8 +144,8 @@ function initialize() {
 
             google.maps.event.addListener(marker, 'click', function(event) {
               var latLng = event.latLng;
-              bodyText = bodyText || 'No Description Yet';  //if body text is true run it, otherwise display string
-              openInfoWindow(bodyText, latLng, map);
+              restaurant_name = restaurant_name || '';  //if body text is true run it, otherwise display string
+              openInfoWindow(restaurant_name, latLng, map);
             });  
 
             return marker; 

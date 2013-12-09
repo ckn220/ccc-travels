@@ -28,7 +28,7 @@
 		</div>
 
 		<div id="center_side">
-			<label for="title">From</label>
+			<label for="title">Where You're From</label>
 			<input type="text" id="title" name="title" class="form-control">
 			<!-- title means where you're from -->
 		</div>
@@ -129,7 +129,7 @@
 		{% for idea in ideas %}
 			
 			<h3>Restaurant Title:  <a href="/ideas/{{ idea.slug }}"> {{ idea.restaurant_name }}</a></h3>
-			<h3>Restaurant Description:{{ idea.idea }}</h3> 
+			<h3>Restaurant Description: {{ idea.idea }}</h3> 
 			<h3>By {{ idea.creator }} from {{ idea.title }}</h3> 
 			<!-- <h4 id="hidden">
 				{{ idea.latitude }}
@@ -185,7 +185,7 @@
 <script>
 var loadMarkers = function() {
 	{% for idea in ideas %}
-	createMarker('{{ idea.latitude }}','{{ idea.longitude }}','{{idea.title}}', '{{idea.idea}}');
+	createMarker('{{ idea.latitude }}','{{ idea.longitude }}','{{idea.title}}', '{{idea.idea}}', '{{idea.restaurant_name}}');
 	// I already had bodyText as a parameter and you are replacing it with what you want it to be 
 	// via idea.idea
 	
