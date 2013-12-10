@@ -15,6 +15,11 @@ font-style: normal;
 
 h4 {
 font-family: 'Cutive Mono', serif;
+/*font-weight: bold;*/
+}
+
+#restaurant_address {
+font-family: 'Cutive Mono', serif;
 font-weight: bold;
 }
 
@@ -60,8 +65,8 @@ margin-top: 40px;
 
 .traveler-form {
   font-family: 'Cutive Mono', serif;
-  font-weight: bold;
-  /*margin: 80px auto 40px;*/
+  /*font-weight: bold;*/
+ /* margin: 80px auto 40px;*/
   
 
   
@@ -84,7 +89,12 @@ margin-top: 40px;
   font-size: 30px;
   margin: 60px 0 10px 0;
 
+}
 
+.traveler-form #photos img {
+  width: 80%;
+  height: 80%;
+  /*overflow: hidden;*/
 }
 
 
@@ -117,7 +127,7 @@ color:red;
 .traveler-form #add {
 
 font-family: 'Cutive Mono', serif;
-font-size: 30px;
+font-size: 32px;
 margin-bottom: 20px;
 font: grey;
 
@@ -131,7 +141,7 @@ font: grey;
   /*margin: 80px auto 40px;*/
   font-family: 'Cutive Mono', serif;
   /*margin-left: 380px;*/
-  font-size: 36px;
+  font-size: 40px;
   margin-bottom: 18px;
 }
 
@@ -161,10 +171,11 @@ font: grey;
 
 }
 
-.traveler-form #review_state {
-  font-size: 30px; 
+/*.jumbotron #review_state {
+  line-height: 30px;
+  width: 900px;
 
-}
+}*/
 
 
 #footer_message {
@@ -182,6 +193,7 @@ font: grey;
 
 
 }
+
 
 
 /*#longitude {

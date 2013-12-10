@@ -124,7 +124,7 @@ function initialize() {
 
 
 
-        function createMarker(lat,lng,titleText, bodyText, restaurant_name) {
+        function createMarker(lat,lng,titleText, bodyText, restaurant_name, restaurant_href) {
           console.log('createMarker');  
           // create google lat lng object
             var latLng = new google.maps.LatLng(String(lat), String(lng));
@@ -144,7 +144,7 @@ function initialize() {
 
             google.maps.event.addListener(marker, 'click', function(event) {
               var latLng = event.latLng;
-              restaurant_name = restaurant_name || '';  //if body text is true run it, otherwise display string
+              restaurant_name = '<a href="/ideas/' + restaurant_href + '">' + restaurant_name || '' + '</a>';  //if body text is true run it, otherwise display string
               openInfoWindow(restaurant_name, latLng, map);
             });  
 

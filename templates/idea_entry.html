@@ -7,11 +7,13 @@
 	<!-- displaying results -->
 	<div class="traveler-form">
 
-		<h4>By {{ idea.creator }} from {{ idea.title }}</h4>
-		<h3><strong>Restaurant Title: {{ idea.restaurant_name }}</strong></h3>
-		<h4 id="review_state">Review of Restaurant: </br><!-- <a href="/ideas/{{ idea.slug }}">  -->{{ idea.idea }}</h4>
+		<h4><strong>By</strong> {{ idea.creator }} <strong>from</strong> {{ idea.title }}</h4>
+		<h3><strong>Restaurant Title:</strong> {{ idea.restaurant_name }}</h3>
+		<h4 id="review_state"><strong>Restaurant Description:</strong> <!-- <a href="/ideas/{{ idea.slug }}">  -->{{ idea.idea }}</h4>
 		</br>
-	    <div><img src="https://s3.amazonaws.com/restaurant_photos_locavore/{{idea.filename}}"></div>
+	    <div id="photos">
+	    	<img src="https://s3.amazonaws.com/restaurant_photos_locavore/{{idea.filename}}">
+	    </div>
 	
 
 

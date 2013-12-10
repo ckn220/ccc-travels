@@ -14,12 +14,25 @@
 		{{form.csrf_token}}
 
 		<h2 id="add"><strong>Locals</strong>, add your favorite restaurants to the map.</h2>
-		<div>Restaurant Address</div>
+		<div id="restaurant_address">Restaurant Address</div>
 
 		<div id="geocode">
       	<input id="address" class="controls" type="text" value="">
       	<input type="button" value="Drop your pin" onclick="codeAddress()">
     	</div>
+
+    	<div id="center_side">
+			<label for="restaurant_name">Restaurant Name</label>
+			<input type="text" id="restaurant_name" name="restaurant_name" class="form-control">
+			<!-- title means where you're from -->
+		</div>
+		
+		
+		<div id="right_side">
+			<!-- This connects to body text where you submit description of restaurant -->
+			<label for="idea">Description of Restaurant</label>
+			<textarea name="idea" id="idea" class="form-control"></textarea>
+		</div>
 
 
 		<div id="left_side">
@@ -33,19 +46,7 @@
 			<!-- title means where you're from -->
 		</div>
 
-		<div id="center_side">
-			<label for="restaurant_name">Restaurant Name</label>
-			<input type="text" id="restaurant_name" name="restaurant_name" class="form-control">
-			<!-- title means where you're from -->
-		</div>
 		
-		
-		<div id="right_side">
-			<!-- This connects to body text where you submit description of restaurant -->
-			<label for="idea">Description of Restaurant</label>
-			<textarea name="idea" id="idea" class="form-control"></textarea>
-		</div>
-
 		<!-- <div class="rating">
 			<label for "star">Rating</label>
 		<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
@@ -129,7 +130,7 @@
 		{% for idea in ideas %}
 			
 			<h3>Restaurant Title:  <a href="/ideas/{{ idea.slug }}"> {{ idea.restaurant_name }}</a></h3>
-			<h3>Restaurant Description: {{ idea.idea }}</h3> 
+			<!-- <h3>Restaurant Description: {{ idea.idea }}</h3>  -->
 			<h3>By {{ idea.creator }} from {{ idea.title }}</h3> 
 			<!-- <h4 id="hidden">
 				{{ idea.latitude }}
@@ -185,7 +186,7 @@
 <script>
 var loadMarkers = function() {
 	{% for idea in ideas %}
-	createMarker('{{ idea.latitude }}','{{ idea.longitude }}','{{idea.title}}', '{{idea.idea}}', '{{idea.restaurant_name}}');
+	createMarker('{{ idea.latitude }}','{{ idea.longitude }}','{{idea.title}}', '{{idea.idea}}', '{{idea.restaurant_name}}', '{{idea.slug}}');
 	// I already had bodyText as a parameter and you are replacing it with what you want it to be 
 	// via idea.idea
 	
